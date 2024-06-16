@@ -1,0 +1,32 @@
+name: Linting and Formating Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.8.3
+
+      - name: Install dependencies using Poetry
+        run: poetry install
+
+      - name: Run ruff check
+        run: poetry run ruff check
+
+      - name: Run ruff format check
+        run: poetry run ruff format --check
