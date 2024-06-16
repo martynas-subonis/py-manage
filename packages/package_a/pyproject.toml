@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "package-a"
+version = "0.1.0"
+description = "Package \"a\" project."
+authors = ["Martynas Subonis <martynas.subonis@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.12.3"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "1.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+strict = true
+no_namespace_packages = true
+ignore_missing_imports = true
