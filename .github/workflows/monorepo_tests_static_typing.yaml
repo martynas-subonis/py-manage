@@ -1,0 +1,47 @@
+name: Tests and Static Typing Checks For Mono-Repo Structure
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  mono-repo-test-and-typing:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    strategy:
+      matrix:
+        directory: [
+          monorepo/packages/package_a,
+          monorepo/packages/package_b,
+          monorepo/services/service_a,
+          monorepo/services/service_b
+        ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.8.3
+
+      - name: Install dependencies using Poetry
+        run: |
+          poetry install
+
+      - name: Run tests
+        run: |
+          poetry run python -m unittest discover
+
+      - name: Run mypy
+        run: |
+          poetry run mypy .
