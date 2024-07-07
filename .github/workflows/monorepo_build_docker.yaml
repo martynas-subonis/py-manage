@@ -1,0 +1,36 @@
+name: Build Docker Images For Mono-Repo Structure
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  mono-repo-build-docker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    strategy:
+      matrix:
+        directory: [
+          monorepo/services/service_a,
+          monorepo/services/service_b
+        ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract service name
+        id: extract-service-name
+        run: echo "service_name=$(basename ${{ matrix.directory }})" >> $GITHUB_OUTPUT
+
+      - name: Build Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.directory }}
+          tags: ${{ steps.extract-service-name.outputs.service_name }}:latest

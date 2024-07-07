@@ -12,6 +12,7 @@ monorepo/
 ├── poetry.toml
 ├── README.md
 ├── LICENSE
+├── workbench/  # Optional
 ├── packages/
 │   ├── package_a/
 │   │   ├── .python-version
@@ -22,9 +23,9 @@ monorepo/
 │   │   ├── README.md
 │   │   ├── LICENSE
 │   │   ├── package_a/
-|   │   │   ├── __init__.py
-|   │   │   ├── module_x.py
-|   │   │   └── ...
+│   │   │   ├── __init__.py
+│   │   │   ├── module_x.py
+│   │   │   └── ...
 │   │   └── tests/
 │   │       ├── __init__.py
 │   │       ├── test_module_x.py
@@ -38,9 +39,9 @@ monorepo/
 │       ├── README.md
 │       ├── LICENSE
 │       ├── package_b/
-|       │   ├── __init__.py
-|       │   ├── module_y.py
-|       │   └── ...
+│       │   ├── __init__.py
+│       │   ├── module_y.py
+│       │   └── ...
 │       └── tests/
 │           ├── __init__.py
 │           ├── test_module_y.py
@@ -112,3 +113,4 @@ monorepo/
 - [Linting and formatting workflow](../.github/workflows/monorepo_lint_format_check.yaml).
 - [Parallelized testing and static typing workflow](../.github/workflows/monorepo_tests_static_typing.yaml).
 - [Package building and publishing workflow](../.github/workflows/monorepo_build_dry_publish.yaml).
+- [Docker images building workflow](../.github/workflows/monorepo_build_docker.yaml).

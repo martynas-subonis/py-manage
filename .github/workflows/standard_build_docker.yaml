@@ -1,0 +1,26 @@
+name: Build Docker Image For Standard Structure
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  standard-repo-build-docker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: standard
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./standard
+          tags: service:latest

@@ -14,27 +14,28 @@ standard/
 ├── LICENSE
 ├── Dockerfile
 ├── main.py
+├── workbench/  # Optional
 ├── src/
 │   ├── __init__.py
 │   ├── package_a/
-|   │   ├── __init__.py
-|   │   ├── module_x.py
-|   │   └── ...
+│   │   ├── __init__.py
+│   │   ├── module_x.py
+│   │   └── ...
 │   ├── package_b/
-|   │   ├── __init__.py
-|   │   ├── module_y.py
-|   │   └── ...
+│   │   ├── __init__.py
+│   │   ├── module_y.py
+│   │   └── ...
 │   └── ...
 └── tests/
     ├── test_main.py
     ├── package_a/
-    |   ├── __init__.py
-    |   ├── test_module_x.py
-    |   └── ...
+    │   ├── __init__.py
+    │   ├── test_module_x.py
+    │   └── ...
     ├── package_b/
-    |   ├── __init__.py
-    |   ├── test_module_y.py
-    |   └── ...
+    │   ├── __init__.py
+    │   ├── test_module_y.py
+    │   └── ...
     └── ...
 ```
 
@@ -68,3 +69,4 @@ manner within the `.whl` distribution, thanks to the Poetry configuration.
 
 - [Code quality check workflow](../.github/workflows/standard_code_check.yaml).
 - [Package building and publishing workflow](../.github/workflows/standard_build_dry_publish.yaml).
+- [Docker image build workflow](../.github/workflows/standard_build_docker.yaml).
