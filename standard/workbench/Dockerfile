@@ -63,21 +63,24 @@ RUN curl https://pyenv.run | bash && \
 # https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list
 # CUDA_ARCH_LIST specifies target GPU architectures (e.g., Turing: sm_75)
 # Adjust MAX_JOBS based on available system resources
-# Remove DEBUG and BUILD_TEST flags if not needed
+# Remove DEBUG flag if not needed.
 
 ENV USE_CUDA=1 \
     USE_CUDNN=1 \
     CMAKE_PREFIX_PATH="/root/.pyenv/versions/$PYTHON_VERSION" \
     TORCH_CUDA_ARCH_LIST="7.5" \
     MAX_JOBS=12 \
-    DEBUG=1 \
-    BUILD_TEST=1
+    DEBUG=1
 
 COPY pyproject.toml poetry.toml poetry.lock ./
 COPY --from=pytorch-source git/pytorch pytorch
-# Install dependencies and PyTorch from source (may take several hours).
+# Install dependencies and PyTorch from source. PyTorch is installed via pip to significantly
+# improve build time. We omit creating a .lock file for this installation since the resulting
+# environment state won't be further distributed.
 RUN poetry install --no-root && \
-    poetry add -vvv ./pytorch && \
+    . .venv/bin/activate && \
+    pip install -v ./pytorch && \
+    deactivate && \
     rm -rf pytorch
 
 EXPOSE 8888
