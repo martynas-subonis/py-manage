@@ -3,7 +3,7 @@
 A personal, opinionated guide to managing Python projects. Literature that extends the argumentation and explains it on 
 a more detailed level:
 - ["Python Project Management Primer"](https://martynassubonis.substack.com/p/python-project-management-primer).
-- ["Optimizing Docker Images for Python Services and GPU-Accelerated Workbenches"]().
+- ["Optimizing Docker Images for Python Production Services"]().
 
 ## Table of Contents
 
