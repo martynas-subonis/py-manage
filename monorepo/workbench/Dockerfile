@@ -1,5 +1,8 @@
 FROM alpine/git AS pytorch-source
 
+# This command clones the main branch. For reproducibility, consider using a specific commit hash
+# Example: git clone --depth 1 --recursive https://github.com/pytorch/pytorch.git pytorch && cd pytorch && git checkout <commit-hash>
+
 RUN git clone --depth 1 --recursive https://github.com/pytorch/pytorch.git pytorch && \
     cd pytorch && \
     git submodule sync && \
@@ -74,9 +77,10 @@ ENV USE_CUDA=1 \
 
 COPY pyproject.toml poetry.toml poetry.lock ./
 COPY --from=pytorch-source git/pytorch pytorch
-# Install dependencies and PyTorch from source. PyTorch is installed via pip to significantly
-# improve build time. We omit creating a .lock file for this installation since the resulting
-# environment state won't be further distributed.
+# Install project dependencies from lock file for reproducibility, then build PyTorch from source.
+# PyTorch is installed via pip to improve build time. We don't update the .lock file for PyTorch
+# and its dependencies as we're not redistributing this specific built PyTroch version. This approach
+# balances reproducibility for PROJECT dependencies with build efficiency for PyTorch.
 RUN poetry install --no-root && \
     . .venv/bin/activate && \
     pip install -v ./pytorch && \
