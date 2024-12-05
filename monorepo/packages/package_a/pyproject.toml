@@ -1,20 +1,22 @@
-[tool.poetry]
+[project]
 name = "package-a"
 version = "0.1.0"
 description = "Package \"a\" project."
-authors = ["Martynas Subonis <martynas.subonis@gmail.com>"]
 license = "MIT"
+authors = [
+    { name = "Martynas Subonis", email = "martynas.subonis@gmail.com" }
+]
 readme = "README.md"
+requires-python = ">=3.12.3"
 
-[tool.poetry.dependencies]
-python = "~3.12.3"
-
-[tool.poetry.group.dev.dependencies]
-mypy = "1.10.0"
+[dependency-groups]
+dev = [
+    "mypy==1.13.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.mypy]
 strict = true

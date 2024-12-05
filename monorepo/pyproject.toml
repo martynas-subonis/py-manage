@@ -1,21 +1,15 @@
-[tool.poetry]
+[project]
 name = "monorepo"
 version = "0.1.0"
 description = "A monorepo project."
-authors = ["Martynas Subonis <martynas.subonis@gmail.com>"]
 license = "MIT"
+authors = [
+    { name = "Martynas Subonis", email = "martynas.subonis@gmail.com" }
+]
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.12.3"
 
-[tool.poetry.dependencies]
-python = "~3.12.3"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "0.4.8"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.mypy]
-strict = true
+[dependency-groups]
+dev = [
+    "ruff==0.8.2",
+]

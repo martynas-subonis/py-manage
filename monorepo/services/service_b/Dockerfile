@@ -1,15 +1,12 @@
-FROM python:3.12.4-slim AS builder
-
-RUN pip install --upgrade pip==24.1.1 && \
-    pip install poetry==1.8.3
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 
 WORKDIR /app
 
-COPY pyproject.toml poetry.toml poetry.lock ./
+COPY pyproject.toml uv.lock ./
 
-RUN poetry install --only main
+RUN uv sync --frozen --no-group dev --no-install-project
 
-FROM python:3.12.4-slim AS runtime
+FROM python:3.12.8-slim AS runtime
 
 WORKDIR /app
 

@@ -7,14 +7,12 @@ standard/
 ├── .gitignore
 ├── .python-version
 ├── .venv/
-├── pyproject.toml
-├── poetry.lock
-├── poetry.toml
-├── README.md
-├── LICENSE
 ├── Dockerfile
+├── LICENSE
 ├── main.py
-├── workbench/  # Optional
+├── pyproject.toml
+├── README.md
+├── uv.lock
 ├── src/
 │   ├── __init__.py
 │   ├── package_a/
@@ -52,21 +50,13 @@ standard/
 -
     - **Tests**: All test code resides in the `tests/` directory, mirroring the source code structure for easy
       navigation.
-- **Poetry Configuration**: To include multiple desired packages under the same distribution wheel while maintaining a
-  structured directory, use configuration similar to:
-  ```toml
-  packages = [
-    { include = "package_a", from = "src", to = "standard" },
-    { include = "package_b", from = "src", to = "standard" }
-  ]
-  ```
 
 The file layout here differs from the standard Python **packaging** structure. However, it allows for maintaining a
 **standard deployable service structure** while also supporting the packaging of modules (if desired) in a standard
-manner within the `.whl` distribution, thanks to the Poetry configuration.
+manner within the `.whl` distribution.
 
 ### CI/CD Pipelines
 
 - [Code quality check workflow](../.github/workflows/standard_code_check.yaml).
-- [Package building and publishing workflow](../.github/workflows/standard_build_dry_publish.yaml).
+- [Package building workflow](../.github/workflows/standard_package_build.yaml).
 - [Docker image build workflow](../.github/workflows/standard_build_docker.yaml).
