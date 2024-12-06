@@ -1,29 +1,33 @@
-[tool.poetry]
+[project]
 name = "standard"
 version = "0.1.0"
 description = "A standard project."
-authors = ["Martynas Subonis <martynas.subonis@gmail.com>"]
 license = "MIT"
+authors = [
+    { name = "Martynas Subonis", email = "martynas.subonis@gmail.com" }
+]
 readme = "README.md"
-packages = [
-    { include = "package_a", from = "src", to = "standard" },
-    { include = "package_b", from = "src", to = "standard" }
+requires-python = ">=3.12.3"
+dependencies = [
+    "fastapi==0.115.6",
+    "pydantic==2.10.3",
+    "uvicorn==0.32.1"
 ]
 
-[tool.poetry.dependencies]
-python = "~3.12.3"
-fastapi = "0.111.0"
-pydantic = "2.7.4"
-uvicorn = "0.30.1"
-
-[tool.poetry.group.dev.dependencies]
-httpx = "0.27.0"
-mypy = "1.10.0"
-ruff = "0.4.8"
+[dependency-groups]
+dev = [
+    "httpx==0.28.0",
+    "mypy==1.13.0",
+    "ruff==0.8.2",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/package_a" = "standard/package_a"
+"src/package_b" = "standard/package_b"
 
 [tool.mypy]
 strict = true

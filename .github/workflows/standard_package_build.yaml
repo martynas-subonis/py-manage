@@ -1,4 +1,4 @@
-name: Linting and Formating Checks For Mono-Repo Structure
+name: Build Packages For Standard Structure
 
 on:
   pull_request:
@@ -6,11 +6,12 @@ on:
       - main
 
 jobs:
-  mono-repo-format-check:
+  standard-build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: monorepo
+        working-directory: standard
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,8 +27,5 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
 
-      - name: Run ruff check
-        run: uv run ruff check
-
-      - name: Run ruff format check
-        run: uv run ruff format --check
+      - name: uv build
+        run: uv build

@@ -1,7 +1,12 @@
 # py-manage
 
-A personal, opinionated guide to managing Python projects. Literature that extends the argumentation and explains it on 
-a more detailed level:
+A personal, opinionated guide to managing Python projects. This guide originally recommended
+using [pyenv](https://github.com/pyenv/pyenv), [pipx](https://github.com/pypa/pipx), and [poetry](https://github.com/python-poetry/poetry) for managing Python
+projects. However, with the advent and continued development of [uv](https://github.com/astral-sh/uv), it is now the preferred tool.
+
+Additional literature can be found below:
+
+- ["Python Project Management Primer Revisited"](https://martynassubonis.substack.com/p/python-project-management-primer-a55).
 - ["Python Project Management Primer"](https://martynassubonis.substack.com/p/python-project-management-primer).
 - ["Optimizing Docker Images for Python Production Services"](https://martynassubonis.substack.com/p/optimizing-docker-images-for-python).
 
@@ -9,7 +14,6 @@ a more detailed level:
 
 1. [Tooling](#tooling)
 2. [Dockerfile Optimizations](#dockerfile-optimizations)
-3. [CUDA Development Workbenches](#cuda-development-workbenches)
 4. [Standard Project Structure](#standard-project-structure)
 5. [Mono-Repository Structure](#mono-repository-structure)
 6. [Workflows](#workflows)
@@ -22,10 +26,7 @@ a more detailed level:
 
 ## Tooling
 
-- Use [pyenv](https://github.com/pyenv/pyenv) to manage `Python` versions.
-- Use [pipx](https://github.com/pypa/pipx) to install and run global `Python` applications in isolated
-  environments (`poetry` for example).
-- Use [poetry](https://github.com/python-poetry/poetry) to manage `Python` dependencies and packaging.
+- Use [uv](https://github.com/astral-sh/uv) to manage Python versions, install and run tools in isolation, and handle project dependencies and packaging.
 - [minor] use [ruff](https://github.com/astral-sh/ruff) as a linter/formatter.
 
 ## Dockerfile Optimizations
@@ -51,12 +52,6 @@ This guide recommends the following techniques:
 Examples could be found in both, [standard](standard/Dockerfile) and [monorepo](monorepo/services/service_a/Dockerfile)
 structures.
 
-## CUDA Development Workbenches
-
-This guide also covers how to build comprehensive CUDA environment workbenches, that can reliably build deep learning
-frameworks, such as [PyTorch](https://github.com/pytorch/pytorch), from source. The same Dockerfile file can be found
-in [standard](standard/workbench/Dockerfile) and [monorepo](monorepo/workbench/Dockerfile) structures.
-
 ## Standard Project Structure
 
 For details on the standard project structure, refer to the [standard structure documentation](standard/README.md).
@@ -68,38 +63,12 @@ the [mono-repository structure documentation](monorepo/README.md).
 
 ## Workflows
 
-### Starting a New Project
-
-Follow these steps to start a new project:
-
-```bash
-pyenv install 3.12.3  # or the version you need
-pyenv local 3.12.3
-poetry init
-... # Configure as needed
-poetry install --no-root
-```
-
-### Installing an Existing Project
-
-Follow these steps to install an existing project:
-
-```bash
-pyenv install 3.12.3  # or the version you need
-pyenv local 3.12.3
-poetry install
-```
-
-### Developing Locally
-
-Follow these steps for local development:
-
-```bash
-poetry run ruff format  # format the files
-poetry run ruff check --fix  # apply linting fixes 
-poetry run python -m unittest discover
-poetry run mypy .
-```
+- [Installing Python](https://docs.astral.sh/uv/guides/install-python/).
+- [Using tools](https://docs.astral.sh/uv/guides/tools/#using-tools).
+- [Working on projects](https://docs.astral.sh/uv/guides/projects/).
+- [Publishing a package](https://docs.astral.sh/uv/guides/publish/#publishing-a-package).
+- [Using uv in Docker](https://docs.astral.sh/uv/guides/integration/docker/#using-uv-in-docker). 
+- [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/#using-uv-in-github-actions).
 
 ### Building Docker Images
 

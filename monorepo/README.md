@@ -7,21 +7,18 @@ monorepo/
 ├── .gitignore
 ├── .python-version
 ├── .venv/
-├── pyproject.toml
-├── poetry.lock
-├── poetry.toml
-├── README.md
 ├── LICENSE
-├── workbench/  # Optional
+├── pyproject.toml
+├── README.md
+├── uv.lock
 ├── packages/
 │   ├── package_a/
 │   │   ├── .python-version
 │   │   ├── .venv/
-│   │   ├── pyproject.toml
-│   │   ├── poetry.lock
-│   │   ├── poetry.toml
-│   │   ├── README.md
 │   │   ├── LICENSE
+│   │   ├── pyproject.toml
+│   │   ├── README.md
+│   │   ├── uv.lock
 │   │   ├── package_a/
 │   │   │   ├── __init__.py
 │   │   │   ├── module_x.py
@@ -33,11 +30,10 @@ monorepo/
 │   └── package_b/
 │       ├── .python-version
 │       ├── .venv/
-│       ├── pyproject.toml
-│       ├── poetry.lock
-│       ├── poetry.toml
-│       ├── README.md
 │       ├── LICENSE
+│       ├── pyproject.toml
+│       ├── README.md
+│       ├── uv.lock
 │       ├── package_b/
 │       │   ├── __init__.py
 │       │   ├── module_y.py
@@ -51,14 +47,15 @@ monorepo/
     ├── service_a/
     │   ├── .python-version
     │   ├── .venv/
+    │   ├── Dockerfile
+    │   ├── LICENSE
+    │   ├── main.py
+    │   ├── pyproject.toml
+    │   ├── README.md
+    │   ├── uv.lock
     │   ├── src/
     │   │   ├── __init__.py
     │   │   └── ...
-    │   ├── Dockerfile
-    │   ├── main.py
-    │   ├── pyproject.toml
-    │   ├── poetry.lock
-    │   ├── poetry.toml
     │   └── tests/
     │       ├── __init__.py
     │       ├── test_main.py
@@ -66,14 +63,15 @@ monorepo/
     └── service_b/
         ├── .python-version
         ├── .venv/
+        ├── Dockerfile
+        ├── LICENSE
+        ├── main.py
+        ├── pyproject.toml
+        ├── README.md
+        ├── uv.lock
         ├── src/
         │   ├── __init__.py
         │   └── ...
-        ├── Dockerfile
-        ├── main.py
-        ├── pyproject.toml
-        ├── poetry.lock
-        ├── poetry.toml
         └── tests/
             ├── __init__.py
             ├── test_main.py
@@ -112,5 +110,5 @@ monorepo/
 
 - [Linting and formatting workflow](../.github/workflows/monorepo_lint_format_check.yaml).
 - [Parallelized testing and static typing workflow](../.github/workflows/monorepo_tests_static_typing.yaml).
-- [Package building and publishing workflow](../.github/workflows/monorepo_build_dry_publish.yaml).
+- [Package building workflow](../.github/workflows/monorepo_package_build.yaml).
 - [Docker images building workflow](../.github/workflows/monorepo_build_docker.yaml).
